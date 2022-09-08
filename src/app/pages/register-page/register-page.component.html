@@ -1,0 +1,92 @@
+
+<!-- Template Driven form -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <div class="wrapper">
+                <h2>Register</h2>
+                <hr>
+                <form #registerForm="ngForm" (submit)="onSubmitHandler()">
+                    <!-- <h2>{{ registerForm.value | json }}</h2>
+                    <hr>
+                    <h2>{{ userModel | json }}</h2> -->
+                    <div class="form-group">
+                        <label for="">First Name</label>
+                        <input type="text" class="form-control" name="firstName" 
+                            #firstName="ngModel" 
+                            [class.is-invalid]="firstName.invalid && firstName.touched"
+                            required
+                            [(ngModel)]="userModel.firstName"
+                        />
+                        <small class="text-danger" [class.d-none]="firstName.untouched || firstName.valid">This is required field</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Email</label>
+                        <input type="text" class="form-control" name="email" 
+                            required
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                            [(ngModel)]="userModel.email"
+                            #email="ngModel"
+                            [class.is-invalid]="email.invalid && email.touched"
+                        />
+                        <div *ngIf="email.errors && email.touched">
+                            <small class="text-danger" *ngIf="email.errors['required']">Email is required</small>
+                            <small class="text-danger" *ngIf="email.errors['pattern']">Email must be valid</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Mobile</label>
+                        <input type="text" class="form-control" name="mobile" [(ngModel)]="userModel.mobile"
+                            #mobile="ngModel"
+                            pattern="^\d{10}$"
+                            required
+                            [class.is-invalid] = "mobile.invalid && mobile.touched"
+                        />
+                        <div *ngIf="mobile.errors && mobile.touched">
+                            <small class="text-danger" *ngIf="mobile.errors['required']">Phone number is required</small>
+                            <small class="text-danger" *ngIf="mobile.errors['pattern']">Phone number must be 10 digits</small>
+                        </div>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="">Password</label>
+                        <input type="password" class="form-control" name="password" [(ngModel)]="userModel.password">
+                    </div>
+                    <div class="form-group">
+                        <label for="">City</label>
+                        <select class="form-control" name="city" [(ngModel)]="userModel.city">
+                            <option *ngFor="let city of cities"> {{ city }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Gender</label>
+                        <div class="form-check">
+                            <input type="radio" name="gender" class="form-check-input" value="Male"
+                                [(ngModel)]="userModel.gender">
+                            <label for="" class="form-check-label">Male</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" name="gender" class="form-check-input" value="Female"
+                                [(ngModel)]="userModel.gender">
+                            <label for="" class="form-check-label">Female</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox" name="" id="" class="form-check-input" name="subscribe"
+                                [(ngModel)]="userModel.subscribe">
+                            <label for="Subscribe" class="form-checl-lable">Subscribe</label>
+                        </div>
+                    </div>
+                    <input type="submit" value="Register" class="btn btn-primary btn-block" 
+                        [disabled]="registerForm.invalid"
+                    />
+                </form>
+                <p class="text-center"><a routerLink="/login"> Already Register? click here</a></p>
+            </div>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+</div>
