@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'angularappgitops'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3338BB8FDF074A50ADA0E3173E28630F }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8D818237416048F0B667B0C30A55530F }}
           package: .
